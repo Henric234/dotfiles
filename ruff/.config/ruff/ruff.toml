@@ -1,0 +1,102 @@
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+# Para limitar o número de caractéres nas linhas em um tamanho confortável para a leitura
+line-length = 120
+# Para padronizar o tamanho da indentação
+indent-width = 4
+
+[lint]
+# Grupo no qual grupos de regras ou regras especificas podem ser selecionadas
+select = [
+    "E4",  # Regras de erro de import do pycodestyle
+    "E7",  # Regras de erro de statements do pycodestyle
+    "E9",  # Regras de erro de runtime do pycodestyle
+    "F",   # Regras do PyFlakes
+    "I",   # Regras de ordenação de imports do isort
+    "RUF", # Regras especificas do Ruff, como remoção de else desnecessário
+    "ANN", # Regras de annotations do flake8
+    "SIM", # Regras de simplificação do flake8, para impedir coisas como "if True"
+    "UP",  # Regras de uso de sintaxe de Python moderno
+    "D",   # Regras de docstring do pydocstyle
+    "C90", # Regras de limite de complexidade
+]
+
+# Grupo no qual regras específicas de um grupo podem ser ignoradas
+ignore = ["D205", "D415"]
+
+# Corrige correção automática, quando possível
+fixable = ["ALL"]
+
+# Permite a existência de variáveis não utilizadas, desde que com o prefixo "_"
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[lint.isort]
+# Requer que os imports sejam feitos sensíveis a maiusculo
+case-sensitive = true
+# Requer duas linhas após os imports
+lines-after-imports = 2
+# Requer uma linha entre grupo de imports
+lines-between-types = 1
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+    "testing"
+]
+known-local-folder = ["tests"]
+
+[lint.pydocstyle]
+# Usa padrão de docstring da Google
+convention = "google"
+
+[lint.flake8-tidy-imports]
+# Bane uso de imports reativos
+ban-relative-imports = "all"
+
+[lint.flake8-quotes]
+# Estabelece aspas duplas para docstring
+docstring-quotes = "double"
+
+[lint.per-file-ignores]
+# Ignora docstrings em arquivos __init__.py
+"__init__.py" = ["D107", "I", "RUF022"]
+# Ignora ausência de annotation e docstring em arquivos de teste
+"*_test.py" = ["D", "ANN"]
+"test_*.py" = ["D", "ANN"]
+
+[format]
+quote-style = "double" # "double" | "single" | "preserve"
+skip-magic-trailing-comma = false
+
+[lint.mccabe]
+max-complexity = 10 # Limite de complexidade (padrão é 10)
