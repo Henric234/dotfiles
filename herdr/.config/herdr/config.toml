@@ -1,0 +1,13 @@
+[ui]
+agent_panel_sort = "spaces"
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+[experimental]
+pane_history = true
+
+[keys]
+new_tab = "cmd+t"
+close_tab = "cmd+w"
